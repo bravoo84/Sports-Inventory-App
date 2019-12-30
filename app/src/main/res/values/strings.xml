@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Sports Inventory</string>
+    <string name="user_name">Username</string>
 </resources>
