@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseListAdapter adapter;
 
+    ArrayList<String> iconURL;
+
 
 
     @Override
@@ -96,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
                 //icon.setBackgroundResource(0);
                 StorageReference img_ref = FirebaseStorage.getInstance().getReferenceFromUrl(inventory.getIconURL());
+                iconURL.add(inventory.getIconURL());
+
                 Glide.with(MainActivity.this)
                         .using(new FirebaseImageLoader())
                         .load(img_ref)
@@ -114,8 +118,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView temp = (TextView) view.findViewById(R.id.inventory_name);
 
-                Toast.makeText(MainActivity.this,temp.getText().toString(),Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(MainActivity.this, InventoryTransaction.class);
+                intent.putExtra("inventory_name",temp.getText().toString());
+                intent.putExtra("iconURL",iconURL.get(position));
+                startActivity(intent);
             }
         });
     }
@@ -163,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         listView = (ListView)findViewById(R.id.inventory_list);
+
+        iconURL = new ArrayList<>();
 
     }
 
