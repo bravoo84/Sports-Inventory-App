@@ -68,6 +68,10 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.GONE);
 
+                                Log.d("name",username+" "+username.length());
+                                Log.d("pass",password+" "+password.length());
+
+
                                 if (task.isSuccessful()) {
 
                                     user = firebaseAuth.getCurrentUser();
@@ -85,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
+
 
 
     }
