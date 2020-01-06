@@ -17,6 +17,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.sportsCommittee.sportsinventory.FirebaseImageLoaderPack.FirebaseImageLoader;
@@ -30,6 +35,8 @@ public class InventoryTransaction extends AppCompatActivity {
     Button issue,return_btn,update;
     ImageView icon;
     TextView inventory_name;
+
+    DatabaseReference ref1,ref2;
 
     @Override
     protected void onStart() {
@@ -47,10 +54,10 @@ public class InventoryTransaction extends AppCompatActivity {
 
         Intent intent = (Intent) getIntent();
 
-        String inventoryName = intent.getStringExtra("inventory_name");
+        final String inventoryName = intent.getStringExtra("inventory_name");
         inventory_name.setText(inventoryName);
 
-        String iconURL = intent.getStringExtra("iconURL");
+        final String iconURL = intent.getStringExtra("iconURL");
         StorageReference img_ref = FirebaseStorage.getInstance().getReferenceFromUrl(iconURL);
 
         Glide.with(InventoryTransaction.this)
@@ -58,9 +65,37 @@ public class InventoryTransaction extends AppCompatActivity {
                 .load(img_ref)
                 .into(icon);
 
+
+
         issue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ref1 = FirebaseDatabase.getInstance().getReference("inventory/"+inventoryName).child("available");
+
+
+                ref1.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Long available = (Long)dataSnapshot.getValue();
+
+                        if(available <=0 ){
+                            Toast.makeText(InventoryTransaction.this,"Stock not available!",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Intent intent = new Intent(InventoryTransaction.this, IssueTransaction.class);
+                            intent.putExtra("inventory_name",inventoryName);
+                            intent.putExtra("iconURL",iconURL);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
             }
         });
