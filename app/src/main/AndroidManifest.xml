@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserProfile"></activity>
+        <activity android:name=".InventoryTransaction"></activity>
+        <activity android:name=".UserProfile" />
         <activity
             android:name=".NoConnection"
             android:screenOrientation="portrait" />

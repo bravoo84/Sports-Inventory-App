@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
-        android:id="@+id/toolbar"/>
+        android:id="@+id/toolbar"
+        android:elevation="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
