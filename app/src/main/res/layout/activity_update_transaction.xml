@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateTransaction"
+    style="@style/pageStyle">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:id="@+id/toolbar"
+        android:elevation="8dp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        android:id="@+id/rl_inventory"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:id="@+id/icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorLight"
+            android:textStyle="bold|italic"
+            android:layout_toEndOf="@+id/icon"
+            android:text="Shuttlecock"
+            android:textSize="20dp"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/inventory_name"
+
+            />
+
+
+    </RelativeLayout>
+    <EditText
+        style="@style/editTextStyle"
+        android:layout_below="@+id/rl_inventory"
+        android:inputType="number"
+        android:hint="Increase stock by..."
+        android:id="@+id/increase"
+        android:layout_marginTop="80dp"/>
+
+    <Button
+        style="@style/buttonStyle"
+        android:layout_below="@id/increase"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:id="@id/update_btn"/>
+
+</RelativeLayout>

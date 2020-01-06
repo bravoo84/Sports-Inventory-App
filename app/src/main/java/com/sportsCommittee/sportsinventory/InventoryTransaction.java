@@ -111,6 +111,10 @@ public class InventoryTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(InventoryTransaction.this, UpdateTransaction.class);
+                intent.putExtra("inventory_name",inventoryName);
+                intent.putExtra("iconURL",iconURL);
+                startActivity(intent);
             }
         });
 
