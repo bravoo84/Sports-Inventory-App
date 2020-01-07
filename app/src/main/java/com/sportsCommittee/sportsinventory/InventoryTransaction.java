@@ -38,6 +38,8 @@ public class InventoryTransaction extends AppCompatActivity {
 
     DatabaseReference ref1,ref2;
 
+    Long available,totalStock;
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -71,13 +73,16 @@ public class InventoryTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                if(!isInternetConnected())return;
+
                 ref1 = FirebaseDatabase.getInstance().getReference("inventory/"+inventoryName).child("available");
 
 
                 ref1.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Long available = (Long)dataSnapshot.getValue();
+                        available = (Long)dataSnapshot.getValue();
 
                         if(available <=0 ){
                             Toast.makeText(InventoryTransaction.this,"Stock not available!",Toast.LENGTH_SHORT).show();
@@ -104,6 +109,45 @@ public class InventoryTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(!isInternetConnected())return;
+
+                ref1 = FirebaseDatabase.getInstance().getReference("inventory/"+inventoryName).child("available");
+                ref2 = FirebaseDatabase.getInstance().getReference("inventory/"+inventoryName).child("totalStock");
+
+                ref1.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        available = (Long)dataSnapshot.getValue();
+
+                        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                totalStock = (Long) dataSnapshot.getValue();
+
+                                if(available == totalStock){
+                                    Toast.makeText(InventoryTransaction.this,"No item issued",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Intent intent = new Intent(InventoryTransaction.this, ReturnTransaction.class);
+                                    intent.putExtra("inventory_name",inventoryName);
+                                    intent.putExtra("iconURL",iconURL);
+                                    startActivity(intent);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
             }
         });
 
@@ -111,6 +155,8 @@ public class InventoryTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                if(!isInternetConnected())return;
                 Intent intent = new Intent(InventoryTransaction.this, UpdateTransaction.class);
                 intent.putExtra("inventory_name",inventoryName);
                 intent.putExtra("iconURL",iconURL);

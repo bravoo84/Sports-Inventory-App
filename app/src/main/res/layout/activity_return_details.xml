@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReturnDetails"
+    style="@style/pageStyle">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:elevation="8dp"
+        android:id="@+id/toolbar"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/layout_rounded"
+        android:id="@+id/rl_inventory"
+        android:padding="5dp"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:id="@+id/icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorLight"
+            android:textStyle="bold|italic"
+            android:layout_toEndOf="@+id/icon"
+            android:text="Shuttlecock"
+            android:textSize="20dp"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/inventory_name"
+
+            />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_rounded"
+        android:layout_below="@+id/rl_inventory"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorLight"
+        android:text="Student Id : "
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+
+        android:textStyle="bold"
+        android:id="@+id/student_id"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorLight"
+        android:text="Date Of Issue : "
+        android:layout_below="@id/student_id"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+
+        android:textStyle="bold"
+        android:id="@+id/doi"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorLight"
+            android:text="Due Days : "
+            android:layout_below="@id/doi"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+
+            android:textStyle="bold"
+            android:id="@+id/due_days"/>
+
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorLight"
+        android:text="Status : "
+        android:layout_below="@id/due_days"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+
+        android:layout_marginRight="20dp"
+        android:textStyle="bold"
+        android:id="@+id/lost_tv"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/lost_tv"
+        android:layout_below="@id/due_days"
+        android:layout_marginTop="18dp"
+        android:orientation="vertical"
+        android:id="@+id/radio_grp"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No damage"
+            android:textSize="18dp"
+            android:textColor="@color/textColorLight"
+            android:onClick="checkButton"
+            android:id="@+id/no_damage"
+            android:buttonTint="@color/textColorLight"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lost"
+            android:textSize="18dp"
+            android:textColor="@color/textColorLight"
+            android:onClick="checkButton"
+            android:id="@+id/lost"
+            android:buttonTint="@color/textColorLight"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Broken"
+            android:textSize="18dp"
+            android:textColor="@color/textColorLight"
+            android:onClick="checkButton"
+            android:id="@+id/broken"
+            android:buttonTint="@color/textColorLight"/>
+
+
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorLight"
+        android:text="Fine : "
+        android:layout_below="@id/radio_grp"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+
+        android:layout_marginRight="20dp"
+        android:textStyle="bold"
+        android:id="@+id/fine_tv"
+        android:visibility="visible"
+        />
+
+    <Button
+        style="@style/buttonStyle"
+        android:layout_below="@+id/fine_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Submit"
+        android:textAllCaps="false"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/submit"/>
+
+  </RelativeLayout>
+
+</RelativeLayout>
