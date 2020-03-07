@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ReturnDetails"
-    style="@style/pageStyle">
+    style="@style/pageStyle"
+    android:fitsSystemWindows="true">
+
+
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -13,6 +16,7 @@
         android:background="@color/colorAccent"
         android:elevation="8dp"
         android:id="@+id/toolbar"/>
+
 
 
 
@@ -50,22 +54,26 @@
     </RelativeLayout>
 
 
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/layout_rounded"
         android:layout_below="@+id/rl_inventory"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:padding="20dp">
+
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/textColorLight"
         android:text="Student Id : "
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:layout_marginTop="10dp"
 
         android:textStyle="bold"
         android:id="@+id/student_id"/>
@@ -76,7 +84,7 @@
         android:textColor="@color/textColorLight"
         android:text="Date Of Issue : "
         android:layout_below="@id/student_id"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:layout_marginTop="20dp"
 
         android:textStyle="bold"
@@ -89,7 +97,7 @@
             android:textColor="@color/textColorLight"
             android:text="Due Days : "
             android:layout_below="@id/doi"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:layout_marginTop="20dp"
 
             android:textStyle="bold"
@@ -102,7 +110,7 @@
         android:textColor="@color/textColorLight"
         android:text="Status : "
         android:layout_below="@id/due_days"
-        android:textSize="20dp"
+            android:textSize="18dp"
         android:layout_marginTop="20dp"
 
         android:layout_marginRight="20dp"
@@ -160,7 +168,7 @@
         android:text="Fine : "
         android:layout_below="@id/radio_grp"
         android:textSize="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
 
         android:layout_marginRight="20dp"
         android:textStyle="bold"
@@ -172,12 +180,16 @@
         style="@style/buttonStyle"
         android:layout_below="@+id/fine_tv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="Submit"
         android:textAllCaps="false"
         android:layout_marginBottom="20dp"
         android:id="@+id/submit"/>
 
+
+
   </RelativeLayout>
+
+
 
 </RelativeLayout>

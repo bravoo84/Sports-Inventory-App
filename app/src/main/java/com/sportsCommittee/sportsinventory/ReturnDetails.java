@@ -69,11 +69,9 @@ public class ReturnDetails extends AppCompatActivity {
         setContentView(R.layout.activity_return_details);
         init();
 
-        daysBetween = (int)calculateDays(dateOfIssue);
+        dueDays = (int)calculateDays(dateOfIssue);
 
-        dueDays = (daysBetween<=3)? 0 : dueDays - 3;
 
-        due_days.append(" "+dueDays);
 
 
 
@@ -89,13 +87,15 @@ public class ReturnDetails extends AppCompatActivity {
        if(radioId == R.id.no_damage){
 
            flag = "No damage";
-           if(dueDays>0){
-               fine = 0;
-               dueDays--;
-               fine+=10;
+           int temp = dueDays;
+           fine = 0;
+           if(temp>0){
+               //fine = 0;
+               //temp--;
+               //fine+=10;
 
                int prev = 5;
-               while(dueDays-->0){
+               while(temp-->0){
                    fine+=prev;
                    prev+=5;
                }
@@ -110,7 +110,8 @@ public class ReturnDetails extends AppCompatActivity {
            fine = 0;
            fine+=50;
            int prev = 5;
-           while(dueDays-->0){
+           int temp = dueDays;
+           while(temp-->0){
                fine+=prev;
                prev+=5;
            }
@@ -123,7 +124,8 @@ public class ReturnDetails extends AppCompatActivity {
            flag = "Broken";
            fine = 0;
            int prev = 5;
-           while(dueDays-->0){
+           int temp = dueDays;
+           while(temp-->0){
                fine+=prev;
                prev+=5;
            }
@@ -312,7 +314,7 @@ public class ReturnDetails extends AppCompatActivity {
         return true;
     }
 
-    public float calculateDays(String dateOfIssue){
+    public int calculateDays(String dateOfIssue){
         SimpleDateFormat myFormat = new SimpleDateFormat("dd-MM-yyyy");
         String dateBeforeString = dateOfIssue;
         String dateAfterString = myFormat.format(Calendar.getInstance().getTime());
@@ -325,12 +327,18 @@ public class ReturnDetails extends AppCompatActivity {
             long difference = dateAfter.getTime() - dateBefore.getTime();
             daysBetween = (difference / (1000*60*60*24));
 
-            System.out.println("Number of Days between dates: "+daysBetween);
+            Log.d("Number of Days: ", ""+daysBetween);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return daysBetween;
+        dueDays = (int)daysBetween;
+
+        dueDays = (dueDays<=3)?0: dueDays - 3;
+
+        due_days.append(" "+dueDays);
+
+        return dueDays;
     }
 
 }
